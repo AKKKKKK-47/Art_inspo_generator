@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Block Inspo Generator</title>
+    <style>
+        body {
+            background-color: #c4b6cf;
+            font-family: "Comic Sans MS", "Chalkboard SE", sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: black;
+        }
+        h1 { font-size: 24px; font-weight: bold; margin-bottom: 20px; text-align: center; }
+        .controls { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        input[type="range"] { width: 200px; }
+        button {
+            padding: 8px 15px;
+            font-size: 14px;
+            background-color: #c4b6cf;
+            border: 1px solid black;
+            cursor: pointer;
+            margin-top: 15px;
+            border-radius: 4px;
+        }
+        button:hover { background-color: #b3a3be; }
+        #result-frame { margin-top: 20px; font-size: 18px; text-align: center; }
+        .word-tag { margin: 5px 0; font-weight: 500; }
+    </style>
+</head>
+<body>
+
+    <h1>Get some Inspiration for your next art project :)</h1>
+
+    <div class="controls">
+        <label for="word-slider">Number of words (1-5): <span id="slider-val">3</span></label>
+        <input type="range" id="word-slider" min="1" max="5" value="3">
+        <button onclick="generateWords()">Generate Words</button>
+    </div>
+
+    <div id="result-frame"></div>
+
+    <script>
+        const WORDS = [
+            "Whisper", "Nebula", "Clockwork", "Ethereal", "Nomad", "Labyrinth", "Symphony","Anime", "Obscure", "Vivid", "Holographic", "Ephemeral", "Crystalline", "Rogue", "Serenade", "Forgotten", "Melancholy", "Radiant", "Abstract", "Bioluminescent", "Chroma", "Somber", "Enchanted", "Galactic", "Midnight", "Surreal", "Vanguard", "Echo", "Velvet", "Gothic", "Prism", "Abstract", "Academic", "Avant-garde", "Atmospheric", "Bold", "Baroque", "Balanced", "Chaotic", "Classic", "Cinematic", "Contemporary", "Complex", "Dynamic", "Delicate", "Detailed", "Distorted", "Dreamlike", "Earthy", "Elegant", "Emotional", "Energetic", "Ethereal", "Expressive", "Faded", "Figurative", "Fluid", "Fragmented", "Geometric", "Gothic", "Graceful", "Graphic", "Grim", "Harmonious", "Haunting", "Heavy", "Iconic", "Illusory", "Imaginative", "Immersive", "Impressionistic", "Intricate", "Luminous", "Lyrical", "Magical", "Majestic", "Melancholic", "Minimalist", "Modern", "Monumental", "Moody", "Muted","Mystical", "Narrative", "Nostalgic", "Chibi", "Organic", "Peaceful", "Poetic", "Polished", "Provocative", "Psychedelic", "Radiant", "Realistic", "Refined", "Reflective", "Resonant", "Retro", "Rhythm", "Romantic", "Rough", "Rustic", "Serene", "Sharp", "Somber", "Sophisticated", "Soulful", "Spontaneous", "Stark", "Static", "Stunning", "Subdued", "Sublime", "Surreal", "Symbolic", "Tactile", "Technical", "Texture", "Timeless", "Tranquil", "Transparent", "Unconventional", "Understated", "Unique", "Vibrant", "Vivid", "Whimsical", "Avocado", "Transversal", "Time Traveling", "Sci-fi", "Dystopian", "Black/White", "road trip", "Dead", "monotone", "medicine", "anger", "sorrow", "happy", "teen", "youth", "meme", "school", "game", "The first TV show that comes to mind"
+        ];
+
+        const slider = document.getElementById('word-slider');
+        const sliderVal = document.getElementById('slider-val');
+        slider.oninput = function() { sliderVal.innerHTML = this.value; }
+
+        function generateWords() {
+            const count = parseInt(slider.value);
+            const resultFrame = document.getElementById('result-frame');
+            resultFrame.innerHTML = '';
+
+            // Shuffle and pick words
+            const shuffled = [...WORDS].sort(() => 0.5 - Math.random());
+            const chosenWords = shuffled.slice(0, count);
+
+            chosenWords.forEach(word => {
+                const wordElement = document.createElement('div');
+                wordElement.className = 'word-tag';
+                wordElement.textContent = word;
+                resultFrame.appendChild(wordElement);
+            });
+        }
+    </script>
+</body>
+</html>
