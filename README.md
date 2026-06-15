@@ -1,7 +1,8 @@
 # Art Inspo Generator 🎨
 This is a single-click web application designed to break creative blocks and give an artist some inspiration with a few random words. 
 This application eliminates the frustration of staring at a blank canvas. With a single click, 
-Users can generate random words to kickstart their next project. Have fun! 
+Users can generate random words to kickstart their next project. Have fun! (I used Google Gemini to debug my code but other than that, no 
+AI was used)
 
 
 ## 🚀 Features
